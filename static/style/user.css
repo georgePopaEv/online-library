@@ -1,21 +1,21 @@
-/* Resetare generală pentru a elimina marginile și padding-ul implicit */
+/* Reset all default margin and padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body general */
+/* General body styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f9f4; /* Nuantă deschisă de verde */
-    color: #333;  /* Text de culoare închisă pentru contrast */
+    background-color: #f0f9f4; /* Light green tint */
+    color: #333;
     line-height: 1.6;
 }
 
 /* Header */
 #header {
-    background: #48C9B0; /* Albastru-verde (cameleon) */
+    background: #48C9B0; /* Blue-green (chameleon) */
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -28,7 +28,7 @@ body {
 }
 
 #logout-btn {
-    background-color: #1F618D; /* Nuanță închisă de albastru */
+    background-color: #1F618D; /* Dark blue shade */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -38,10 +38,10 @@ body {
 }
 
 #logout-btn:hover {
-    background-color: #2980B9; /* Albastru mai deschis pentru hover */
+    background-color: #2980B9; /* Lighter blue on hover */
 }
 
-/* Info utilizator */
+/* User info section */
 #user-info {
     text-align: center;
     margin-top: 40px;
@@ -50,11 +50,11 @@ body {
 }
 
 .username {
-    color: #1F618D; /* Albastru închis */
+    color: #1F618D; /* Dark blue */
     font-weight: bold;
 }
 
-/* Bara de navigație */
+/* Navigation bar */
 #toolbar {
     display: flex;
     justify-content: center;
@@ -63,7 +63,7 @@ body {
 }
 
 .btn {
-    background-color: #48C9B0; /* Albastru-verde (cameleon) */
+    background-color: #48C9B0; /* Blue-green */
     color: white;
     border: none;
     padding: 12px 20px;
@@ -73,30 +73,4 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #1F618D; /* Albastru închis la hover */
-    transform: scale(1.05);
-}
-
-#borrow-book-btn {
-    background-color: #27AE60; /* Nuanță vibrantă de verde */
-}
-
-#borrow-book-btn:hover {
-    background-color: #2ECC71; /* Verde mai deschis la hover */
-}
-
-#return-book-btn {
-    background-color: #F39C12; /* Nuanță de galben/oranj pentru Returnare */
-}
-
-#return-book-btn:hover {
-    background-color: #E67E22; /* Oranj mai închis la hover */
-}
-
-/* Stil pentru secțiunile de listare cărți */
-button:disabled {
-    background-color: #BDC3C7; /* Gri pentru butoane inactive */
-    cursor: not-allowed;
-}
-
+.btn:hover
