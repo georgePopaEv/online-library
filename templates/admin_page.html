@@ -1,0 +1,47 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_page.css') }}">
+    <title>Admin Page</title>
+</head>
+<body>
+    <header id="admin-header">
+        <h1>Welcome to the Admin Page</h1>
+        <button id="logout-btn" class="admin-btn" onclick="logout()">Log Out</button>
+    </header>
+
+    <div id="admin-info" class="admin-info">
+        <p>Manage the library system by adding, removing, and viewing books and members. You can also manage pending borrowings.</p>
+    </div>
+
+    <nav id="admin-toolbar" class="admin-toolbar">
+        <div class="button-container">
+            <button id="add-book-btn" class="admin-btn" onclick="window.location.href='add_book.html'">Add Book</button>
+        </div>
+
+        <div class="button-container">
+            <button id="view-books-btn" class="admin-btn" onclick="window.location.href='view_books.html'">View Books</button>
+        </div>
+
+        <div class="button-container">
+            <button id="remove-book-btn" class="admin-btn" onclick="window.location.href='remove_book.html'">Remove Book</button>
+        </div>
+
+        <div class="button-container">
+            <button id="view-members-btn" class="admin-btn" onclick="window.location.href='view_members.html'">View Members</button>
+        </div>
+
+        <div class="button-container">
+            <button id="remove-member-btn" class="admin-btn" onclick="window.location.href='remove_member.html'">Remove Member</button>
+        </div>
+
+        <div class="button-container">
+            <button id="pending-borrowings-btn" class="admin-btn" onclick="window.location.href='view_borrowings.html'">Pending Borrowings</button>
+        </div>
+    </nav>
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

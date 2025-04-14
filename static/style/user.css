@@ -1,0 +1,102 @@
+/* Resetare generală pentru a elimina marginile și padding-ul implicit */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body general */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f9f4; /* Nuantă deschisă de verde */
+    color: #333;  /* Text de culoare închisă pentru contrast */
+    line-height: 1.6;
+}
+
+/* Header */
+#header {
+    background: #48C9B0; /* Albastru-verde (cameleon) */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#welcome-title {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+#logout-btn {
+    background-color: #1F618D; /* Nuanță închisă de albastru */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#logout-btn:hover {
+    background-color: #2980B9; /* Albastru mai deschis pentru hover */
+}
+
+/* Info utilizator */
+#user-info {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.username {
+    color: #1F618D; /* Albastru închis */
+    font-weight: bold;
+}
+
+/* Bara de navigație */
+#toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    background-color: #48C9B0; /* Albastru-verde (cameleon) */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1F618D; /* Albastru închis la hover */
+    transform: scale(1.05);
+}
+
+#borrow-book-btn {
+    background-color: #27AE60; /* Nuanță vibrantă de verde */
+}
+
+#borrow-book-btn:hover {
+    background-color: #2ECC71; /* Verde mai deschis la hover */
+}
+
+#return-book-btn {
+    background-color: #F39C12; /* Nuanță de galben/oranj pentru Returnare */
+}
+
+#return-book-btn:hover {
+    background-color: #E67E22; /* Oranj mai închis la hover */
+}
+
+/* Stil pentru secțiunile de listare cărți */
+button:disabled {
+    background-color: #BDC3C7; /* Gri pentru butoane inactive */
+    cursor: not-allowed;
+}
+

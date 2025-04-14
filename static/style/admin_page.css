@@ -1,0 +1,93 @@
+/* Resetare generală pentru a elimina marginile și padding-ul implicit */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; /* Fundal deschis */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header */
+#admin-header {
+    text-align: center;
+    background-color: #27AE60; /* Verde vibrant pentru header */
+    padding: 20px;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* Titlu header */
+#admin-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* Buton de log out */
+#logout-btn {
+    background-color: #E74C3C; /* Roșu pentru log out */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    width: 200px;
+    margin-top: 20px;
+}
+
+#logout-btn:hover {
+    background-color: #C0392B; /* Roșu închis la hover */
+    transform: scale(1.05);
+}
+
+/* Info administrator */
+#admin-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#admin-info p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Toolbar pentru butoane */
+#admin-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Stil pentru butoanele admin */
+.admin-btn {
+    background-color: #48C9B0; /* Albastru-verde */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    width: 200px;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-btn:hover {
+    background-color: #1F618D; /* Albastru închis la hover */
+    transform: scale(1.05);
+}
+
+/* Stil pentru containerul butoanelor */
+.button-container {

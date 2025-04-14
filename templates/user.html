@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/user.css') }}">
+    <title>Online Library</title>
+</head>
+<body>
+    <header id="header">
+        <h1 id="welcome-title">Welcome to the Online Library</h1>
+        <button id="logout-btn" class="btn" onclick="logout()">Log out</button>
+    </header>
+
+    <div id="user-info" class="user-info">
+        <h2>Hello, <span id="user-name" class="username">User</span></h2>
+        <p id="user-description" class="description">Browse available books and return them when needed.</p>
+    </div>
+
+    <nav id="toolbar" class="toolbar">
+        <button id="all-books-btn" class="btn" onclick="getAllBooks()">All Books</button>
+        <button id="pending-books-btn" class="btn" onclick="getPendingBooks()">Pending Books</button>
+        <button id="borrowed-books-btn" class="btn" onclick="getBorrowedBooks()">Borrowed Books</button>
+        <button id="borrow-book-btn" class="btn" onclick="borrowBook()">Borrow a Book</button>
+        <button id="return-book-btn" class="btn" onclick="returnBook()">Return a Book</button>
+    </nav>
+
+    <script src="{{ url_for('static', filename='js/user.js') }}"></script>
+</body>
+</html>
