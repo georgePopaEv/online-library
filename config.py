@@ -39,4 +39,5 @@ if __name__ == '__main__':
     database_config['password'] = os.environ['postgres']
     # print(read_from_db("select * from project.users;", database_config))
     print(read_from_db(f"select username, password from project.users where username = 'admin2'"))
+    print(read_from_db("select * from project.authors where full_name = 'John Doe'"))
 
