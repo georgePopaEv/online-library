@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/view_books.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Library Books</h1>
+        <a href="{{ url_for('web_home') }}">
+            <button class="admin-btn">Back to Admin Page</button>
+        </a>
+    </header>
+
+    <main>
+        {% if books %}
+            <table class="books-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Pages</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td><div class="highlight-title">{{ book.title }}</div></td>
+                        <td>{{ book.description }}</td>
+                        <td>{{ book.page_count }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.genre }}</td>  <!-- Aici apare genul -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-books">No books found in the library.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

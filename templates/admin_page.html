@@ -22,11 +22,11 @@
         </div>
 
         <div class="button-container">
-            <button id="view-books-btn" class="admin-btn" onclick="window.location.href='view_books.html'">View Books</button>
+            <button id="view-books-btn" class="admin-btn" onclick="window.location.href='{{ url_for('view_books') }}'">View Books</button>
         </div>
 
         <div class="button-container">
-            <button id="remove-book-btn" class="admin-btn" onclick="window.location.href='remove_book.html'">Remove Book</button>
+            <button id="remove-book-btn" class="admin-btn" onclick="window.location.href='{{ url_for('remove_book') }}'">Remove Book</button>
         </div>
 
         <div class="button-container">
@@ -34,7 +34,12 @@
         </div>
 
         <div class="button-container">
-            <button id="remove-member-btn" class="admin-btn" onclick="window.location.href='remove_member.html'">Remove Member</button>
+            <button id="remove-member-btn" class="admin-btn" onclick="window.location.href='{{ url_for('remove_member') }}'">Remove Member</button>
+
+        </div>
+
+        <div class="button-container">
+            <button id="add-member-btn" class="admin-btn" onclick="window.location.href='/add_member'">Add Member</button>
         </div>
 
         <div class="button-container">

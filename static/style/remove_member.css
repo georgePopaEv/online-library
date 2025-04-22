@@ -1,0 +1,118 @@
+/* Stiluri generale */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: #4C9A2A; /* Verde cameleon */
+    margin-bottom: 20px;
+}
+
+.admin-btn {
+    background-color: #3498db; /* Albastru */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+.admin-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Secțiunea pentru informații admin */
+.admin-info {
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 3rem;
+    color: #16a085; /* Nuanță de verde mai închis */
+    margin-bottom: 30px;
+}
+
+/* Lista membrilor */
+.members-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Fiecare membru într-un div */
+.member-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d5f5e3; /* Fond verde deschis pentru fiecare membru */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem; /* Font mai mare pentru membrii */
+}
+
+.member-info p {
+    font-size: 2rem;
+    color: #333;
+}
+
+.remove-action button {
+    background-color: #e74c3c; /* Roșu pentru butonul de ștergere */
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: background-color 0.3s;
+}
+
+.remove-action button:hover {
+    background-color: #c0392b;
+}
+
+/* Mesajele flash */
+.flash-messages {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f1c40f; /* Galben pentru mesajul flash */
+    color: #fff;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.flash-messages p {
+    font-size: 1.5rem;
+}
