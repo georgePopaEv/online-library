@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Member</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/add_member.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Add Member</h1>
+        <a href="{{ url_for('web_home') }}">
+            <button class="admin-btn">Back to Admin Page</button>
+        </a>
+    </header>
+
+    <div class="form-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="full_name">Full Name:</label>
+            <input type="text" name="full_name" id="full_name" required>
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+
+            <label for="is_admin">Is Admin (Da/Nu):</label>
+            <select name="is_admin" id="is_admin" required>
+                <option value="Nu">Nu</option>
+                <option value="Da">Da</option>
+            </select>
+
+            <button type="submit" class="submit-btn">Add Member</button>
+        </form>
+    </div>
+</body>
+</html>

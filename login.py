@@ -60,6 +60,10 @@ def web_home_users():
     return render_template("user.html")
 
 @app.route("/")
+def welcome():
+    return render_template("welcome.html")
+
+@app.route("/login")
 def home():
     return render_template("login.html")
 
@@ -95,7 +99,7 @@ def add_book():
 
             if not query_author:
                 cursor.execute(
-                    "INSERT INTO project.authors (full_name) VALUES (%s) RETURNING author_id",
+                    "insert into  project.authors (full_name) VALUES (%s) RETURNING author_id",
                     (author_name,)
                 )
                 author_id = cursor.fetchone()[0]
@@ -104,8 +108,8 @@ def add_book():
             else:
                 author_id = query_author[0][0]
             insert_query = """
-                            INSERT INTO project.books (title, description, page_count, author_id, genre_id)
-                            VALUES (%s, %s, %s, %s, %s)
+                            insert into project.books (title, description, page_count, author_id, genre_id)
+                            values (%s, %s, %s, %s, %s)
                         """
             cursor.execute(insert_query, (title, description, int(page_count), author_id, int(genre_name)))
             connection.commit()
@@ -119,58 +123,118 @@ def add_book():
             flash("An error occurred while adding the book.", "Error")
             return render_template("add_book.html")
     elif request.method == "GET":
-        query = read_from_db("SELECT * FROM project.genres")
+        query = read_from_db("select * from project.genres")
         list_genres = [(gen["genre_name"], gen["genre_id"]) for gen in query]
         return render_template("add_book.html", genres = list_genres)
 
     return render_template("add_book.html")
 
 
+@app.route("/remove_member", methods=["GET", "POST"])
+def remove_member():
+    if request.method == "POST":
+        user_id_to_remove = request.form.get('user_id')
+        if user_id_to_remove:
+            try:
+                connection = psycopg2.connect(**database_config)
+                cursor = connection.cursor()
+                cursor.execute("delete from project.users where user_id = %s", (user_id_to_remove,))
+                connection.commit()
+                flash("User removed successfully!", "success")
+            except Exception as e:
+                flash(f"Error: {str(e)}", "error")
+            finally:
+                cursor.close()
+                connection.close()
+        return redirect(url_for("remove_member"))
+
+    users = read_from_db("select user_id, full_name FROM project.users where is_admin != 'Da'")
+    return render_template("remove_member.html", users=users)
+
+
+
 @app.route("/add_member", methods=["GET", "POST"])
 def add_member():
     if request.method == "POST":
-        fullname = request.form['title']
-        username = request.form['description']
-        password = request.form['page_count']
-        is_admin = str(request.form['author_id'])
+        fullname = request.form['full_name']
+        username = request.form['username']
+        password = request.form['password']
+        is_admin = request.form['is_admin']
 
-
-        if not fullname or not username or not password or not is_admin :
+        if not fullname or not username or not password or not is_admin:
             flash("Please fill in all fields.", "error")
             return render_template("add_member.html")
+
         try:
             connection = psycopg2.connect(**database_config)
             cursor = connection.cursor()
-            cursor.execute(f"select * from project.users where full_name = '{username}'")
+            cursor.execute("select * from project.users where username = %s", (username,))
             query_user = cursor.fetchall()
 
-            if not query_user:
+            if query_user:
+                flash("User already exists.", "error")
+            else:
                 cursor.execute(
-                    "INSERT INTO project.users (full_name ???  ?? ??) VALUES (%s) RETURNING author_id",
+                    "insert into project.users (full_name, username, password, is_admin) values (%s, %s, %s, %s)",
                     (fullname, username, password, is_admin)
                 )
-                user_id = cursor.fetchone()[0]
-
                 connection.commit()
-            else:
-                flash("User already exists ", "Error")
-                return render_template("add_member.html")
+                flash("User added successfully!", "success")
 
             cursor.close()
             connection.close()
+            return redirect(url_for("add_member"))
 
-            flash("User added successfully!", "Success")
-            return redirect(url_for("home"))
         except Exception as e:
             print(f"Error: {e}")
-            flash("An error occurred while adding the user.", "Error")
+            flash("An error occurred while adding the user.", "error")
             return render_template("add_member.html")
-    elif request.method == "GET":
-        return render_template("add_member.html")
 
     return render_template("add_member.html")
 
 
+@app.route("/view_books")
+def view_books():
+    query = """
+        select b.title, b.description, b.page_count, a.full_name as author, g.genre_name as genre
+        from project.books b
+        join project.authors a on b.author_id = a.author_id
+        join project.genres g on b.genre_id = g.genre_id
+    """
+    books = read_from_db(query)
+    return render_template("view_books.html", books=books)
+
+@app.route("/user_view_books")
+def user_view_books():
+    query = """
+        select b.title, b.description, b.page_count, a.full_name as author, g.genre_name as genre
+        from project.books b
+        join project.authors a on b.author_id = a.author_id
+        join project.genres g on b.genre_id = g.genre_id
+    """
+    books = read_from_db(query)
+    return render_template("user_view_books.html", books=books)
+
+@app.route("/remove_book", methods=["GET", "POST"])
+def remove_book():
+    if request.method == "POST":
+        book_id_to_remove = request.form.get('book_id')
+        if book_id_to_remove:
+            try:
+                connection = psycopg2.connect(**database_config)
+                cursor = connection.cursor()
+                cursor.execute("delete from project.books where book_id = %s", (book_id_to_remove,))
+                connection.commit()
+                flash("Book removed successfully!", "success")
+            except Exception as e:
+                flash(f"Error: {str(e)}", "error")
+            finally:
+                cursor.close()
+                connection.close()
+        return redirect(url_for("remove_book"))
+
+    books = read_from_db("select book_id, title from project.books")
+    return render_template("remove_book.html", books=books)
 
 
 if __name__ == '__main__':

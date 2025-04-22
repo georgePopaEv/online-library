@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/welcome.css') }}">
+    <title>Welcome to Our Library</title>
+</head>
+<body>
+    <div id="welcome-container">
+        <h1>Welcome to Your Personal Library!</h1>
+        <p>Browse, borrow, and enjoy your favorite books!</p>
+        <a href="{{ url_for('home') }}">
+            <button id="connect-btn" class="btn">Connect</button>
+        </a>
+    </div>
+</body>
+</html>

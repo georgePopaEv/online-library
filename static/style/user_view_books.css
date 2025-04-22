@@ -1,0 +1,65 @@
+/* user_view_books.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #0f4b5f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+}
+
+.books-table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.books-table th,
+.books-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.books-table th {
+    background-color: #2c6b7f;
+    color: white;
+}
+
+.books-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.highlight-title {
+    background-color: #d4f1f4;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #2c6b7f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #18475d;
+}

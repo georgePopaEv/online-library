@@ -1,0 +1,66 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #e6f0e6;
+    color: #1d2f1d;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #2f5d2f;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.books-table {
+    border-collapse: collapse;
+    width: 80%;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 50, 0, 0.1);
+}
+
+.books-table th, .books-table td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+}
+
+.books-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.highlight-title {
+    background-color: #2d4d2d;
+    color: #fff;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.no-books {
+    font-size: 20px;
+    text-align: center;
+    color: #555;
+}

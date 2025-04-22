@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User View Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/user_view_books.css') }}">
+</head>
+<body>
+    <header>
+        <h1>All Available Books</h1>
+        <a href="{{ url_for('web_home_users') }}">
+            <button class="admin-btn">Back to User Page</button>
+        </a>
+    </header>
+
+    <main>
+        {% if books %}
+            <table class="books-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Pages</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td><div class="highlight-title">{{ book.title }}</div></td>
+                        <td>{{ book.description }}</td>
+                        <td>{{ book.page_count }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.genre }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No books available.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
