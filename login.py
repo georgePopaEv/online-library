@@ -126,7 +126,49 @@ def add_book():
     return render_template("add_book.html")
 
 
+@app.route("/add_member", methods=["GET", "POST"])
+def add_member():
+    if request.method == "POST":
+        fullname = request.form['title']
+        username = request.form['description']
+        password = request.form['page_count']
+        is_admin = str(request.form['author_id'])
 
+
+        if not fullname or not username or not password or not is_admin :
+            flash("Please fill in all fields.", "error")
+            return render_template("add_member.html")
+        try:
+            connection = psycopg2.connect(**database_config)
+            cursor = connection.cursor()
+            cursor.execute(f"select * from project.users where full_name = '{username}'")
+            query_user = cursor.fetchall()
+
+            if not query_user:
+                cursor.execute(
+                    "INSERT INTO project.users (full_name ???  ?? ??) VALUES (%s) RETURNING author_id",
+                    (fullname, username, password, is_admin)
+                )
+                user_id = cursor.fetchone()[0]
+
+                connection.commit()
+            else:
+                flash("User already exists ", "Error")
+                return render_template("add_member.html")
+
+            cursor.close()
+            connection.close()
+
+            flash("User added successfully!", "Success")
+            return redirect(url_for("home"))
+        except Exception as e:
+            print(f"Error: {e}")
+            flash("An error occurred while adding the user.", "Error")
+            return render_template("add_member.html")
+    elif request.method == "GET":
+        return render_template("add_member.html")
+
+    return render_template("add_member.html")
 
 
 
