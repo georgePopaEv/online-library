@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        main {
+            padding: 20px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .book {
+            margin-bottom: 10px;
+        }
+        .book-title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Biblioteca Online</h1>
+    <p>Imprumută, returnează și gestionează-ți lecturile preferate!</p>
+</header>
+
+<nav>
+    <a href="#login">Login</a>
+    <a href="#register">Creează cont</a>
+    <a href="#profil">Profilul Meu</a>
+    <a href="#carti-disponibile">Cărți Disponibile</a>
+</nav>
+
+<main>
+    <section id="welcome" class="section">
+        <h2>Bun venit!</h2>
+        <p>Accesează biblioteca noastră virtuală pentru a imprumuta cărți, a vedea istoricul împrumuturilor tale și a descoperi noi titluri captivante!</p>
+    </section>
+
+    <section id="carti-disponibile" class="section">
+        <h2>Cărți Disponibile</h2>
+        <table border="1">
+    <thead>
+        <tr>
+            <th>Nr.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Page Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr id="row-{{ book.book_id }}">
+            <td>{{ loop.index }}</td>
+            <td id="title-{{ book.book_id }}">{{ book.title }}</td>
+            <td id="author-{{ book.book_id }}">{{ book.author }}</td>
+            <td id="description-{{ book.book_id }}">{{ book.description }}</td>
+            <td id="pagecount-{{ book.book_id }}">{{ book.page_count }}</td>
+            <td>
+                <form action="{{ url_for('delete_book', book_id=book.book_id) }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+<!--                <button onclick="deleteBook({{ book.book_id }})">Delete</button>-->
+
+                <button onclick="showEditForm({{ book.book_id }})">Edit</button>
+            </td>
+        </tr>
+
+        <!-- Formularul de editare ascuns -->
+        <tr id="edit-row-{{ book.book_id }}" style="display: none;">
+            <td colspan="6">
+                <form method="post" action="{{ url_for('edit_book', book_id=book.book_id) }}" onsubmit="return confirm('Save changes?');">
+                    Title: <input type="text" name="title" value="{{ book.title }}">
+                    Author: <input type="text" name="author" value="{{ book.author }}">
+                    Description: <input type="text" name="description" value="{{ book.description }}">
+                    Pages: <input type="number" name="page_count" value="{{ book.page_count }}">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="cancelEdit({{ book.book_id }})">Cancel</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+        <!-- Mai multe carti aici -->
+    </section>
+
+    <section id="profil" class="section">
+        <h2>Profilul Meu</h2>
+        <p><strong>Nume utilizator:</strong> [Nume User]</p>
+        <p><strong>Carti împrumutate:</strong></p>
+        <ul>
+            <li>"Secretele Universului" - Returnare până la: 15/05/2025</li>
+            <li>"Povestea Vieții" - Returnare până la: 22/05/2025</li>
+        </ul>
+    </section>
+
+    <section id="login" class="section">
+        <h2>Login</h2>
+        <form>
+            <label for="username">Nume utilizator:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Parolă:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </section>
+
+    <section id="register" class="section">
+        <h2>Creează cont</h2>
+        <form>
+            <label for="new-username">Nume utilizator:</label><br>
+            <input type="text" id="new-username" name="new-username"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="new-password">Parolă:</label><br>
+            <input type="password" id="new-password" name="new-password"><br><br>
+            <input type="submit" value="Creează cont">
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>Biblioteca Online &copy; 2025</p>
+</footer>
+
+</body>
+</html>

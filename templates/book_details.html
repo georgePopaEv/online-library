@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mândrie și prejudecată - BiblioTech</title>
+    <style>
+        /* Resetare CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Variabile CSS */
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #dbeafe;
+            --text-color: #333;
+            --light-text: #fff;
+            --gray-text: #666;
+            --light-gray: #f3f4f6;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--light-text);
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--light-text);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #f0f0f0;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--light-text);
+            color: var(--light-text);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+        }
+
+        .btn-secondary:hover {
+            background-color: #2563eb;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .back-link i {
+            margin-right: 0.5rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .book-details {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .book-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .book-info h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .book-author {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            margin-bottom: 1rem;
+        }
+
+        .book-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+        }
+
+        .stars {
+            color: #f59e0b;
+            margin-right: 0.5rem;
+        }
+
+        .book-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-available {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-borrowed {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .borrow-section {
+            margin-top: 1.5rem;
+        }
+
+        .btn-large {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        .loan-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .loan-info i {
+            margin-right: 0.5rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            padding: 0 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .tab-list {
+            display: flex;
+            list-style: none;
+            margin-bottom: -1px;
+        }
+
+        .tab-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .tab-item.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .tab-content {
+            padding: 2rem;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .book-description {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .book-details-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-item {
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        /* Reviews */
+        .reviews-list {
+            margin-top: 1.5rem;
+        }
+
+        .review {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .reviewer {
+            font-weight: 500;
+        }
+
+        .review-date {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .review-rating {
+            margin-bottom: 0.5rem;
+        }
+
+        .review-text {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .add-review {
+            margin-top: 2rem;
+        }
+
+        .add-review h3 {
+            margin-bottom: 1rem;
+        }
+
+        .review-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .rating-select {
+            margin-bottom: 1rem;
+        }
+
+        .rating-select label {
+            margin-right: 0.5rem;
+        }
+
+        /* Similar Books */
+        .similar-books {
+            margin-top: 3rem;
+        }
+
+        .similar-books h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .book-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-card-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .book-card-info {
+            padding: 1rem;
+        }
+
+        .book-card-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .book-card-author {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+
+            .book-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .book-cover {
+                margin: 0 auto;
+            }
+
+            .book-meta {
+                justify-content: center;
+            }
+
+            .tab-list {
+                flex-wrap: wrap;
+            }
+
+            .tab-item {
+                flex: 1;
+                text-align: center;
+                padding: 0.75rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome pentru iconițe -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-book-open"></i>
+                    BiblioTech
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#features">Funcționalități</a></li>
+                        <li><a href="index.html#how-it-works">Cum funcționează</a></li>
+                        <li><a href="books.html">Cărți</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Autentificare</a>
+                    <a href="register.html" class="btn btn-primary">Înregistrare</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <a href="books.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Înapoi la lista de cărți
+            </a>
+
+            <div class="book-details">
+                <div class="book-header">
+                    <div class="book-cover-container">
+                        <img src="https://m.media-amazon.com/images/I/71Q1tPupKjL._AC_UF1000,1000_QL80_.jpg" alt="Mândrie și prejudecată" class="book-cover">
+
+                        <div class="borrow-section">
+                            <a href="#" class="btn btn-secondary btn-large" style="display: block; text-align: center;">Împrumută această carte</a>
+                            <p class="loan-info">
+                                <i class="fas fa-info-circle"></i>
+                                Termen de împrumut: 14 zile
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="book-info">
+                        <h1>Mândrie și prejudecată</h1>
+                        <p class="book-author">de Jane Austen</p>
+
+                        <div class="book-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-book"></i>
+                                <span>432 pagini</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-language"></i>
+                                <span>Română</span>
+                            </div>
+                            <div class="meta-item rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>4.7 (128 recenzii)</span>
+                            </div>
+                        </div>
+
+                        <div class="book-status status-available">
+                            <i class="fas fa-check-circle"></i>
+                            Disponibilă pentru împrumut
+                        </div>
+
+                        <p class="book-description">
+                            Un roman clasic despre dragoste și societate în Anglia secolului XIX. Elizabeth Bennet, protagonista cărții, face parte dintr-o familie cu cinci fete, într-o epocă în care căsătoria era singura cale de a asigura viitorul unei femei.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <ul class="tab-list">
+                        <li class="tab-item active" data-tab="description">Descriere</li>
+                        <li class="tab-item" data-tab="details">Detalii carte</li>
+                        <li class="tab-item" data-tab="reviews">Recenzii (128)</li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="description">
+                        <div class="book-description">
+                            <p>
+                                "Mândrie și prejudecată" este unul dintre cele mai iubite și apreciate romane din literatura engleză. Publicat pentru prima dată în 1813, romanul urmărește povestea lui Elizabeth Bennet, a doua din cele cinci fiice ale familiei Bennet, care trăiește într-o societate rurală engleză la începutul secolului al XIX-lea.
+                            </p>
+                            <p style="margin-top: 1rem;">
+                                Când domnul Bingley, un tânăr bogat, se mută în vecinătate, doamna Bennet vede o oportunitate pentru fiicele sale. Bingley este însoțit de prietenul său, domnul Darcy, care la început o respinge pe Elizabeth, considerând-o inferioară statutului său. Pe parcursul romanului, prejudecățile și mândria ambilor protagoniști sunt puse la încercare, iar sentimentele lor evoluează într-un mod neașteptat.
+                            </p>
+                            <p style="margin-top: 1rem;">
+                                Jane Austen explorează teme precum clasa socială, căsătoria, educația și moralitatea, oferind o critică subtilă a societății din acea perioadă. Romanul este renumit pentru dialogurile inteligente, ironia fină și personajele complexe, în special Elizabeth Bennet, care este considerată una dintre cele mai memorabile eroine din literatura universală.
+                            </p>
+                            <p style="margin-top: 1rem;">
+                                "Mândrie și prejudecată" a fost adaptat de numeroase ori pentru televiziune, film și teatru, rămânând una dintre cele mai populare și influente opere literare din toate timpurile.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="details">
+                        <div class="book-details-list">
+                            <div class="detail-item">
+                                <div class="detail-label">Titlu original</div>
+                                <div class="detail-value">Pride and Prejudice</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Autor</div>
+                                <div class="detail-value">Jane Austen</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Anul publicării</div>
+                                <div class="detail-value">1813 (original), 2008 (această ediție)</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Editura</div>
+                                <div class="detail-value">Editura Corint</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Limba</div>
+                                <div class="detail-value">Română</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Număr pagini</div>
+                                <div class="detail-value">432</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">ISBN</div>
+                                <div class="detail-value">978-973-135-XXX-X</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Categorie</div>
+                                <div class="detail-value">Ficțiune, Clasic, Romantic</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Disponibilitate</div>
+                                <div class="detail-value">În stoc (8 exemplare)</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Termen împrumut</div>
+                                <div class="detail-value">14 zile</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="reviews">
+                        <div class="reviews-list">
+                            <div class="review">
+                                <div class="review-header">
+                                    <div class="reviewer">Maria Popescu</div>
+                                    <div class="review-date">15 martie 2023</div>
+                                </div>
+                                <div class="review-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    Una dintre cărțile mele preferate! Personajele sunt atât de bine conturate și povestea este captivantă. Elizabeth Bennet este un personaj extraordinar, iar evoluția relației dintre ea și domnul Darcy este fascinantă. Recomand cu căldură această carte tuturor iubitorilor de literatură clasică.
+                                </div>
+                            </div>
+
+                            <div class="review">
+                                <div class="review-header">
+                                    <div class="reviewer">Ion Ionescu</div>
+                                    <div class="review-date">2 februarie 2023</div>
+                                </div>
+                                <div class="review-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    Un clasic pe care l-am citit cu plăcere. Dialogurile sunt inteligente și pline de umor, iar Jane Austen reușește să creeze o imagine vie a societății engleze din acea perioadă. Singurul motiv pentru care nu dau 5 stele este că mi s-a părut că ritmul este uneori prea lent.
+                                </div>
+                            </div>
+
+                            <div class="review">
+                                <div class="review-header">
+                                    <div class="reviewer">Ana Dumitrescu</div>
+                                    <div class="review-date">10 ianuarie 2023</div>
+                                </div>
+                                <div class="review-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    Personajul Elizabeth Bennet este unul dintre cele mai bine scrise personaje feminine din literatura clasică. Independența ei de gândire și refuzul de a se conforma așteptărilor societății sunt remarcabile pentru acea perioadă. Jane Austen a fost cu adevărat înaintea timpului său. O carte care merită citită și recitită.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-review">
+                            <h3>Adaugă o recenzie</h3>
+                            <form class="review-form">
+                                <div class="rating-select">
+                                    <label>Evaluare:</label>
+                                    <select name="rating">
+                                        <option value="5">5 stele</option>
+                                        <option value="4">4 stele</option>
+                                        <option value="3">3 stele</option>
+                                        <option value="2">2 stele</option>
+                                        <option value="1">1 stea</option>
+                                    </select>
+                                </div>
+                                <textarea name="review" placeholder="Scrie recenzia ta aici..."></textarea>
+                                <button type="submit" class="btn btn-secondary">Trimite recenzia</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="similar-books">
+                <h2>Cărți similare</h2>
+                <div class="books-grid">
+                    <a href="#" class="book-card">
+                        <div class="book-card-image">
+                            <span>Imagine copertă</span>
+                        </div>
+                        <div class="book-card-info">
+                            <h3 class="book-card-title">Emma</h3>
+                            <p class="book-card-author">Jane Austen</p>
+                            <div class="book-card-meta">
+                                <span>★★★★☆ 4.5</span>
+                                <span class="status-available">Disponibilă</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="book-card">
+                        <div class="book-card-image">
+                            <span>Imagine copertă</span>
+                        </div>
+                        <div class="book-card-info">
+                            <h3 class="book-card-title">Rațiune și simțire</h3>
+                            <p class="book-card-author">Jane Austen</p>
+                            <div class="book-card-meta">
+                                <span>★★★★☆ 4.4</span>
+                                <span class="status-available">Disponibilă</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="book-card">
+                        <div class="book-card-image">
+                            <span>Imagine copertă</span>
+                        </div>
+                        <div class="book-card-info">
+                            <h3 class="book-card-title">La răscruce de vânturi</h3>
+                            <p class="book-card-author">Emily Brontë</p>
+                            <div class="book-card-meta">
+                                <span>★★★★☆ 4.3</span>
+                                <span class="status-borrowed">Împrumutată</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="book-card">
+                        <div class="book-card-image">
+                            <span>Imagine copertă</span>
+                        </div>
+                        <div class="book-card-info">
+                            <h3 class="book-card-title">Jane Eyre</h3>
+                            <p class="book-card-author">Charlotte Brontë</p>
+                            <div class="book-card-meta">
+                                <span>★★★★★ 4.6</span>
+                                <span class="status-available">Disponibilă</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BiblioTech</h3>
+                    <p style="color: #aaa; margin-bottom: 1rem;">Biblioteca ta digitală preferată, disponibilă oricând, oriunde.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: #aaa;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #aaa;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #aaa;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link-uri rapide</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Pagina principală</a></li>
+                        <li><a href="books.html">Cărți</a></li>
+                        <li><a href="login.html">Autentificare</a></li>
+                        <li><a href="register.html">Înregistrare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resurse</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Întrebări frecvente</a></li>
+                        <li><a href="#">Termeni și condiții</a></li>
+                        <li><a href="#">Politica de confidențialitate</a></li>
+                        <li><a href="#">Ajutor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt" style="width: 20px;"></i> Strada Bibliotecii, Nr. 123, București</li>
+                        <li><i class="fas fa-phone" style="width: 20px;"></i> +40 123 456 789</li>
+                        <li><i class="fas fa-envelope" style="width: 20px;"></i> contact@bibliotech.ro</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BiblioTech. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript pentru funcționalitatea tab-urilor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabItems = document.querySelectorAll('.tab-item');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Elimină clasa active de pe toate tab-urile
+                    tabItems.forEach(tab => tab.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                    // Adaugă clasa active pe tab-ul curent
+                    this.classList.add('active');
+
+                    // Activează conținutul corespunzător
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

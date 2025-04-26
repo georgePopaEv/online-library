@@ -12,7 +12,7 @@ def read_config(path:str = "config.json"):
 
 config = read_config()
 database_config = config['database_config']
-database_config['password'] = os.environ['postgres']
+database_config['password'] = "Secure12!"
 
 def read_from_db(query: str,db_conf: dict = database_config) -> list:
     try:
@@ -36,7 +36,7 @@ def read_from_db(query: str,db_conf: dict = database_config) -> list:
 if __name__ == '__main__':
     config = read_config()
     database_config = config['database_config']
-    database_config['password'] = os.environ['postgres']
+    database_config['password'] = "Secure12!"
     # print(read_from_db("select * from project.users;", database_config))
     print(read_from_db(f"select username, password from project.users where username = 'admin2'"))
     print(read_from_db("select * from project.authors where full_name = 'John Doe'"))
