@@ -2,7 +2,7 @@
   "database_config": {
     "host": "localhost",
     "user": "postgres",
-    "database": "postgres",
-    "port": "5432"
+    "database": "bookdb",
+    "port": "5433"
   }
 }
